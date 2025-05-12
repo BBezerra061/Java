@@ -1,0 +1,29 @@
+public class ArvoreBinaria {
+    // ... outros métodos ...
+
+    /**
+     * Método público para contar os nós da esquerda festiva
+     * @return quantidade de nós da esquerda festiva na árvore
+     */
+    public int contarNosEsquerdaFestiva() {
+        return contarNosEsquerdaFestiva(raiz, false);
+    }
+
+    /**
+     * Método privado recursivo para auxiliar na contagem dos nós da esquerda festiva
+     * @param no nó atual sendo verificado
+     * @param ehEsquerda indica se o nó atual é filho esquerdo de seu pai
+     * @return quantidade de nós da esquerda festiva na subárvore
+     */
+    private int contarNosEsquerdaFestiva(No no, boolean ehEsquerda) {
+        if (no == null) {
+            return 0;
+        }
+        
+        int contador = ehEsquerda ? 1 : 0;
+        contador += contarNosEsquerdaFestiva(no.getEsq(), true);
+        contador += contarNosEsquerdaFestiva(no.getDir(), false);
+        
+        return contador;
+    }
+}
