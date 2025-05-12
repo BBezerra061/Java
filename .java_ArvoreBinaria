@@ -1,0 +1,39 @@
+public class ArvoreBinaria {
+    // ... outros métodos ...
+
+    /**
+     * Método público para imprimir a árvore com recuos proporcionais ao nível
+     */
+    public void imprimirComRecuos() {
+        imprimirComRecuos(raiz, 0);
+    }
+
+    /**
+     * Método privado recursivo para imprimir a árvore com recuos
+     * @param no nó atual sendo impresso
+     * @param nivel nível atual na árvore (determina o recuo)
+     */
+    private void imprimirComRecuos(No no, int nivel) {
+        if (no == null) {
+            imprimirRecuo(nivel);
+            System.out.println("-");
+            return;
+        }
+        
+        imprimirRecuo(nivel);
+        System.out.println(no.getId());
+        
+        imprimirComRecuos(no.getEsq(), nivel + 1);
+        imprimirComRecuos(no.getDir(), nivel + 1);
+    }
+
+    /**
+     * Método auxiliar para imprimir os espaços de recuo
+     * @param nivel nível atual na árvore
+     */
+    private void imprimirRecuo(int nivel) {
+        for (int i = 0; i < nivel; i++) {
+            System.out.print(" ");
+        }
+    }
+}
